@@ -1,8 +1,10 @@
 package com.orosz.myapp.orderfoodtut;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orosz.myapp.orderfoodtut.Common.Common;
 import com.orosz.myapp.orderfoodtut.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -60,7 +63,12 @@ public class SignIn extends AppCompatActivity {
 
                             if (user.getPassword().equals(editPassword.getText().toString())) {
 
-                                Toast.makeText(SignIn.this, "Sign in successfully !", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(SignIn.this, "Sign in successfully !", Toast.LENGTH_LONG).show();
+
+                                Intent homeIntent = new Intent(SignIn.this, Home.class);
+                                Common.currentUser = user;
+                                startActivity(homeIntent);
+                                finish();
 
                             } else {
 
